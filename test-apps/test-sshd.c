@@ -458,7 +458,6 @@ ssh_ops_child_process_io(void *_priv, struct lws *wsi,
 	struct sshd_instance_priv *priv = _priv;
 	struct lws_ring *r = priv->ring_stdout;
 	void *rp;
-	uint8_t buf[256], *p, *d;
 	size_t bytes;
 	int n, m;
 
@@ -481,6 +480,8 @@ ssh_ops_child_process_io(void *_priv, struct lws *wsi,
 			break;
 		}
 		if (priv->pty_in_bloat_nl_to_crnl) {
+			uint8_t buf[256], *p, *d;
+
 			if (bytes != 1)
 				n = bytes / 2;
 			else

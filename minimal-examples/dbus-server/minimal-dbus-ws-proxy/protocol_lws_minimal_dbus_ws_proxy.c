@@ -488,7 +488,7 @@ new_conn(DBusServer *server, DBusConnection *conn, void *d)
 
 	memset(conn_wspctx, 0, sizeof(*conn_wspctx));
 
-	conn_wspctx->ctx.tsi = conn_wspctx->ctx.tsi;
+	conn_wspctx->ctx.tsi = wspctx->ctx.tsi;
 	conn_wspctx->ctx.vh = wspctx->ctx.vh;
 	conn_wspctx->ctx.conn = conn;
 	conn_wspctx->vhd = vhd; /* let accepted connections also know the vhd */

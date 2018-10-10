@@ -677,7 +677,6 @@ rops_write_role_protocol_h1(struct lws *wsi, unsigned char *buf, size_t len,
 		size_t o = sizeof(mtubuf) - LWS_PRE -
 			   LWS_HTTP_CHUNK_HDR_MAX_SIZE -
 			   LWS_HTTP_CHUNK_TRL_MAX_SIZE;
-		char c[LWS_HTTP_CHUNK_HDR_MAX_SIZE + 2];
 
 		n = lws_http_compression_transform(wsi, buf, len, wp, &out, &o);
 		if (n)
@@ -691,6 +690,7 @@ rops_write_role_protocol_h1(struct lws *wsi, unsigned char *buf, size_t len,
 			return olen;
 
 		if (wsi->http.comp_ctx.chunking) {
+			char c[LWS_HTTP_CHUNK_HDR_MAX_SIZE + 2];
 			/*
 			 * this only needs dealing with on http/1.1 to allow
 			 * pipelining

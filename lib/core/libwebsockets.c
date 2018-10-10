@@ -2132,9 +2132,7 @@ LWS_VISIBLE void
 lwsl_hexdump_level(int hexdump_level, const void *vbuf, size_t len)
 {
 	unsigned char *buf = (unsigned char *)vbuf;
-	unsigned int n, m, start;
-	char line[80];
-	char *p;
+	unsigned int n;
 
 	if (!lwsl_visible(hexdump_level))
 		return;
@@ -2148,8 +2146,8 @@ lwsl_hexdump_level(int hexdump_level, const void *vbuf, size_t len)
 	_lws_log(hexdump_level, "\n");
 
 	for (n = 0; n < len;) {
-		start = n;
-		p = line;
+		unsigned int start = n, m;
+		char line[80], *p = line;
 
 		p += sprintf(p, "%04X: ", start);
 

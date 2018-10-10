@@ -67,7 +67,7 @@ callback_minimal_server_echo(struct lws *wsi, enum lws_callback_reasons reason,
 				lws_get_protocol(wsi));
 	const struct msg *pmsg;
 	struct msg amsg;
-	int n, m, flags;
+	int n, flags;
 
 	switch (reason) {
 
@@ -104,6 +104,8 @@ callback_minimal_server_echo(struct lws *wsi, enum lws_callback_reasons reason,
 
 		lwsl_user("LWS_CALLBACK_SERVER_WRITEABLE\n");
 		do {
+			int m;
+
 			pmsg = lws_ring_get_element(pss->ring, &pss->tail);
 			if (!pmsg) {
 				lwsl_user(" (nothing in ring)\n");
